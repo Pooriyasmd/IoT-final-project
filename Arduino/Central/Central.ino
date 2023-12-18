@@ -166,8 +166,8 @@ void setup() {
   // Calculate how many weights and biases we're training on the device. 
   weights_bias_cnt = calcTotalWeightsBias();
 
-  // weights_bias_cnt has to be multiple of WEIGHTS_PER_PACKET
-  int remainder = weights_bias_cnt % WEIGHTS_PER_PACKET;
+ 
+ int remainder = weights_bias_cnt % WEIGHTS_PER_PACKET;
   if (remainder != 0)
     weights_bias_cnt += WEIGHTS_PER_PACKET - remainder;
 
@@ -180,7 +180,7 @@ void setup() {
   setupNN(WeightBiasPtr);  // CREATES THE NETWORK BASED ON NN_def[]
   printAccuracy();
 
-  dyn_weights = (float*) WeightBiasPtr;    // we only support float for BLE transmission
+  dyn_weights = (float*) WeightBiasPtr; // if it for some reason would not be float
   // initialize the BLE hardware
   BLE.begin();
 
